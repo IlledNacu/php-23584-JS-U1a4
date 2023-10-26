@@ -171,3 +171,50 @@ alert('La sumatoria de los valores ingresados da como resultado ' + suma + '. El
 //      e. La menor edad ingresada.
 //      f. La mayor altura ingresada
 
+var mujeres = 0;
+var mujeresMayores25 = 0;
+var hombres = 0;
+var hombresMenores18 = 0;
+var edadMujeres = 0;
+var alturaHombres = 0;
+var menorEdad = 120;
+var mayorAltura = 0;
+
+opcion = true;
+
+while (opcion) {
+    var sexo = prompt('Ingrese el sexo (H: Hombre, M: Mujer)');
+    var edad = parseInt(prompt('Ingrese la edad (en años)'));
+    var altura = parseInt(prompt('Ingrese la altura (en centímetros)'));
+
+    if (sexo.toUpperCase() === 'M') {
+        mujeres++;
+        edadMujeres += edad;
+        if (edad > 25) {
+            mujeresMayores25++;
+        }
+    } else if (sexo.toUpperCase() === 'H') {
+        hombres++;
+        alturaHombres += altura;
+        if (edad < 18) {
+            hombresMenores18++;
+        }
+    }
+
+    if (edad < menorEdad) {
+        menorEdad = edad;
+    }
+
+    if (altura > mayorAltura) {
+        mayorAltura = altura;
+    }
+
+    opcion = confirm('¿Desea ingresar otro registro?');
+}
+
+mujeresMayores25 = (mujeresMayores25 / mujeres) * 100;
+hombresMenores18 = (hombresMenores18 / hombres) * 100;
+edadMujeres = edadMujeres / mujeres;
+alturaHombres = alturaHombres / hombres;
+
+alert('El porcentaje de mujeres mayores a 25 años: ' + mujeresMayores25 + '%. El porcentaje de hombres menores de 18 años: ' + hombresMenores18 + '%. El promedio de edad de las mujeres: ' + edadMujeres + '. El promedio de altura de los hombres: ' + alturaHombres + '. La menor edad ingresada: ' + menorEdad + '. La mayor altura ingresada: ' + mayorAltura);
