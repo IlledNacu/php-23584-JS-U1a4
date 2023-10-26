@@ -1,22 +1,23 @@
 // Resolver los ejercicios utilizando variables y operadores. Para el ingreso y egreso de 
 // información utilizar los métodos de JavaScript vistos en clase. Cada ejercicio debe ser 
 // realizado en un archivo HTML y un JS (extensiones .html y .js).
+
 // 22. Se le solicita al usuario que ingrese 3 números. Realice un programa para informar 
 // si el número es múltiplo de 3, múltiplo 5, múltiplo de ambos o múltiplo de ninguno.
 
-var a = parseInt(prompt('Ingrese un número'))
-var b = parseInt(prompt('Ingrese otro número'))
-var c = parseInt(prompt('Ingrese un número más'))
+for(let cont = 0; cont < 3; cont ++ ){
+    var a = parseInt(prompt('Ingrese un número'))
+    if(a%3 == 0 & a%5 == 0){
+        alert('Es múltiplo de ambos')
+    }
+    else if(a%3 == 0){
+        alert('Es múltiplo de 3')}
+    else if(a%5 == 0){
+        alert('Es múltiplo de 5')
+    }
+    else{alert('No es múltiplo de ninguno')}
+}
 
-if((a+b+c)/3 == 0 & (a+b+c)/5 == 0){
-    alert('Es múltiplo de ambos')
-}
-else if((a+b+c)/3 == 0){
-    alert('Es múltiplo de 3')}
-else if((a+b+c)/5 == 0){
-    alert('Es múltiplo de 5')
-}
-else{alert('No es múltiplo de ninguno')}
 
 // 23. Se le solicita al usuario que ingrese los extremos de un rango numérico y una 
 // cantidad de valores desconocidos.
@@ -36,23 +37,21 @@ var numeros = []
 var opcion = true
 
 while(opcion){
-    var numero = prompt('Ingrese un número. Cuando no quiera ingresar más presione')
-    if(numero >= 'a' & numero <= 'z' & numero >= 'A' & numero <= 'Z'){
-        opcion = false
-    }
-    else{
-        numeros += parseInt(numero)
+    var numero = prompt('Ingrese un número. Cuando no quiera ingresar más, ingrese "BASTA"');
+    if (numero.toUpperCase() === 'BASTA') {
+        opcion = false;
+    } else {
+        numeros.push(parseInt(numero));
     }
 }
 
-for(let num = 0;numeros.length-1;num++){
-    if(numero[num]>=inicio&numero[num]<=fin){
-        if(numero[num]%2 == 0){
+for(let num = 0;num < numeros.length;num++){
+    if(numeros[num]>=inicio && numeros[num]<=fin){
+        if(numeros[num]%2 === 0){
             alert('Es par')
         }
-    }
-    else{
-        if(numero[num]%2 != 0){
+    }else{
+        if(numeros[num]%2 != 0){
             alert('Es impar')
         }
     }
@@ -66,10 +65,10 @@ for(let num = 0;numeros.length-1;num++){
 opcion = true
 while(opcion){
     a = parseInt(prompt('Ingrese un número'))
-    b = parseInt(prompt('Ingrese otro número'))
+    var b = parseInt(prompt('Ingrese otro número'))
 
-    c = prompt('Ingrese el operador de la operación que desee realizar (+, -, *, /)')
-    while(c!='+'&c!='-'&c!='*'&c!='/'){
+    var c = prompt('Ingrese el operador de la operación que desee realizar (+, -, *, /)')
+    while(c!='+' && c!='-' && c!='*' && c!='/'){
         c = prompt('Ingrese el operador de la operación que desee realizar (+, -, *, /)')
     }
     if(c=='+'){
@@ -96,11 +95,71 @@ while(opcion){
 //  El promedio de las notas.
 // Tenga en cuenta que solamente las notas pueden ir del 1 al 10.
 
+var notas = []
+opcion = true
+
+while(opcion){
+    var nota = parseInt(prompt('Ingrese una nota. Presione 0 (cero) cuando no quiera ingresar más'))
+    if(nota === 0){
+        opcion = false
+    }else if(nota >= 1 && nota <= 10){
+        notas.push(nota)
+    }else{alert('Ingrese una nota válida (de 1 a 10)')}
+}
+
+var suma = 0
+var aprobados = 0
+var desaprobados = 0
+
+for(let num = 0; num < notas.length ; num++){
+    suma = suma + notas[num]
+    if(notas[num]>=4){
+        aprobados = aprobados + 1
+    }
+    if(notas[num]<4){
+        desaprobados = desaprobados + 1
+    }
+}
+
+var promedio = suma / notas.length
+aprobados = (aprobados*100)/notas.length
+desaprobados = (desaprobados*100)/notas.length
+
+alert('El promedio de las notas es ' + promedio + '. El porcentaje de aprobados es del ' + aprobados + '% y de desaprobados del ' + desaprobados + '%')
+
 // 26. Se le solicita al usuario que ingrese una cantidad desconocida de números. Realice 
 // un programa para calcular e informar:
 // a. La sumatoria de los valores ingresados.
 // b. El menor valor ingresado.
 // c. El mayor valor ingresado.
+
+numeros = []
+opcion = true
+
+while(opcion){
+    var numero = prompt('Ingrese un número. Cuando no quiera ingresar más, ingrese "BASTA"');
+    if (numero.toUpperCase() === 'BASTA') {
+        opcion = false;
+    } else {
+        numeros.push(parseInt(numero));
+    }
+}
+
+suma = 0
+var minimo = numeros[0]
+var maximo = numeros[0]
+
+for(let num = 0;num < numeros.length;num++){
+    suma = suma + numeros[num]
+    if(numeros[num]<minimo){
+        minimo = numeros[num]
+    }
+    if(numeros[num]>maximo){
+        maximo = numeros[num]
+    }
+}
+
+alert('La sumatoria de los valores ingresados da como resultado ' + suma + '. El mínimo es ' + minimo + ' y el máximo ' + maximo)
 
 // 27. Como resultado de una encuesta se recogen los siguientes datos: sexo (H: Hombre, 
 //     M: Mujer), edad (en años) y altura (en centímetros). Realice un programa para calcular 
@@ -111,3 +170,4 @@ while(opcion){
 //      d. El promedio de altura de los hombres.
 //      e. La menor edad ingresada.
 //      f. La mayor altura ingresada
+
